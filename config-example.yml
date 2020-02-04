@@ -18,6 +18,24 @@ graphhopper:
   # More are: surface,max_width,max_height,max_weight,max_axle_load,max_length,hazmat,hazmat_tunnel,hazmat_water,toll,track_type
   # graph.encoded_values: surface,toll,track_type
 
+  ##### Routing Profiles ####
+
+  profiles:
+    - name: car
+      vehicle: car
+      weighting: short_fastest
+      distance_factor: 0.3
+      turn_costs: true
+      u_turn_costs: 60
+
+    - name: my_bike
+      vehicle: mtb
+      weighting: fastest
+
+    - name: your_moto
+      vehicle: motorcycle
+      weighting: shortest
+
   ##### Elevation #####
 
 

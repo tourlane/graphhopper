@@ -19,7 +19,10 @@
 package com.graphhopper;
 
 import com.graphhopper.util.PMap;
+import com.graphhopper.util.Profile;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +32,7 @@ import java.util.Map;
  * different configuration options as fields of this class including the default values.
  */
 public class GraphHopperConfig {
+    private final List<Profile> profiles = new ArrayList<>();
     private final PMap map;
 
     public GraphHopperConfig() {
@@ -46,6 +50,10 @@ public class GraphHopperConfig {
 
     public boolean has(String key) {
         return map.has(key);
+    }
+
+    public List<Profile> getProfiles() {
+        return profiles;
     }
 
     public boolean getBool(String key, boolean _default) {
@@ -79,6 +87,11 @@ public class GraphHopperConfig {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("profiles:\n");
+        for (Profile profile : profiles) {
+            sb.append(profile);
+            sb.append("\n");
+        }
         sb.append("properties:\n");
         for (Map.Entry<String, String> entry : map.toMap().entrySet()) {
             sb.append(entry.getKey()).append(": ").append(entry.getValue());
