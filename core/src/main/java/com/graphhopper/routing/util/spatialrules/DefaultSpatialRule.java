@@ -70,6 +70,11 @@ public class DefaultSpatialRule extends AbstractSpatialRule {
     }
 
     @Override
+    public double getBadSurfaceSpeed(double _default) {
+        return _default;
+    }
+
+    @Override
     public String getId() {
         throw new UnsupportedOperationException("No id for the DefaultSpatialRule");
     }

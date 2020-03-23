@@ -179,6 +179,11 @@ public class SpatialRuleLookupArrayTest {
             }
 
             @Override
+            public double getBadSurfaceSpeed(double _default) {
+                return _default;
+            }
+
+            @Override
             public String getId() {
                 return name;
             }
