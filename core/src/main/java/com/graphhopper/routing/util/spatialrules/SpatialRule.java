@@ -51,6 +51,8 @@ public interface SpatialRule {
      */
     RoadAccess getAccess(String highwayTag, TransportationMode transportationMode, RoadAccess _default);
 
+    double getBadSurfaceSpeed(double _default);
+
     /**
      * Returns the borders in which the SpatialRule is valid
      */
@@ -87,5 +89,11 @@ public interface SpatialRule {
         public String toString() {
             return "SpatialRule.EMPTY";
         }
+
+        @Override
+        public double getBadSurfaceSpeed(double _default) {
+            return _default;
+        }
+
     };
 }

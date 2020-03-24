@@ -25,6 +25,8 @@ import com.graphhopper.storage.IntsRef;
 import com.graphhopper.util.Helper;
 import com.graphhopper.util.PMap;
 
+import com.graphhopper.routing.util.spatialrules.SpatialRule;
+
 import java.util.*;
 
 /**
@@ -346,9 +348,19 @@ public class CarFlagEncoder extends AbstractFlagEncoder {
      * @return The assumed speed
      */
     protected double applyBadSurfaceSpeed(ReaderWay way, double speed) {
+
+        double currentBadSurfaceSpeed = badSurfaceSpeed;
+        SpatialRule spatialRule = way.getTag("spatial_rule", null);
+
+        if (spatialRule != null) {
+            currentBadSurfaceSpeed = spatialRule.getBadSurfaceSpeed(badSurfaceSpeed);
+        }
+
         // limit speed if bad surface
-        if (badSurfaceSpeed > 0 && speed > badSurfaceSpeed && way.hasTag("surface", badSurfaceSpeedMap))
-            speed = badSurfaceSpeed;
+        if (currentBadSurfaceSpeed > 0 && speed > currentBadSurfaceSpeed && way.hasTag("surface", badSurfaceSpeedMap)) {
+            speed = currentBadSurfaceSpeed;
+        }
+
         return speed;
     }
 

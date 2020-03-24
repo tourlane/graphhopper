@@ -2,6 +2,7 @@ package com.graphhopper.routing.util.spatialrules;
 
 import com.graphhopper.routing.util.spatialrules.countries.AustriaSpatialRule;
 import com.graphhopper.routing.util.spatialrules.countries.GermanySpatialRule;
+import com.graphhopper.routing.util.spatialrules.countries.NamibiaSpatialRule;
 import com.graphhopper.util.shapes.Polygon;
 
 import java.util.List;
@@ -18,6 +19,11 @@ public class CountriesSpatialRuleFactory implements SpatialRuleLookupBuilder.Spa
                 GermanySpatialRule germanySpatialRule = new GermanySpatialRule();
                 germanySpatialRule.setBorders(polygons);
                 return germanySpatialRule;
+            case "NAM":
+                NamibiaSpatialRule namibiaSpatialRule = new NamibiaSpatialRule();
+                namibiaSpatialRule.setBorders(polygons);
+                return namibiaSpatialRule;
+
         }
         return SpatialRule.EMPTY;
     }
